@@ -38,4 +38,4 @@ If you are running the code against a newly released 5-year ACS dataset, do the 
 5. Once the code is run the `pop5pct_E` field is used to flag geographies with a limited english speaking population of over 5% in the webmap
 
 ## Attempts to automate
-Currently parts of this project were done by joining the output tables to tiger line files based on census provided GEOID. This has been refined to export directly using the tigris package. In addtion fields were renamed for ease of use, a compehensive guide to fields used is avaible at data.census.gov .
+Currently parts of this project were done by joining the output tables to tiger line files based on census provided GEOID. This has been refined to export directly using the tigris package. This repo also makes use of packages that are being phased out, those will be changed over in the follow version. In addtion fields were renamed for ease of use, a compehensive guide to fields used is avaible at data.census.gov .
