@@ -46,7 +46,7 @@ for (lep_year in years) {
   # Create a mapping of oldnames to newnames
   col_mapping <- setNames(newnames, oldnames)
   
-  # Rename columns based on the mapping
+  # Rename
   pumas <- pumas %>%
     rename_with(~ ifelse(. %in% oldnames, col_mapping[.], .), .cols = everything())
   
