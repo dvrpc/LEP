@@ -1,12 +1,10 @@
 years <- 2016:2020
 
 # Set your working directory
-setwd("your\path\here")
+setwd("C:\\Users\\jdobkin\\Documents\\outputs")
 
 #census keys
 Sys.getenv("CENSUS_API_KEY")
-census_api_key("CENSUS_API_KEY", overwrite = TRUE)
-ckey <- "CENSUS_API_KEY"
 
 # Loop through each year
 for (lep_year in years) {
@@ -17,7 +15,7 @@ for (lep_year in years) {
                    year = lep_year,
                    state = lep_states,
                    output = "wide",
-                   geometry = FALSE,
+                   geometry = TRUE,
                    cache = TRUE)
   
   tracts <- get_acs(geography = "tract",
@@ -26,7 +24,7 @@ for (lep_year in years) {
                     year = lep_year,
                     state = lep_states,
                     output = "wide",
-                    geometry = FALSE,
+                    geometry = TRUE,
                     cache = TRUE)
   
   pumas2 <- get_acs(geography = "public use microdata area",
@@ -35,7 +33,7 @@ for (lep_year in years) {
                     year = lep_year,
                     state = lep_states,
                     output = "wide",
-                    geometry = FALSE,
+                    geometry = TRUE,
                     cache = TRUE)
   
   # Filter data
@@ -46,7 +44,7 @@ for (lep_year in years) {
   # Create a mapping of oldnames to newnames
   col_mapping <- setNames(newnames, oldnames)
   
-  # Rename
+  # Rename columns based on the mapping
   pumas <- pumas %>%
     rename_with(~ ifelse(. %in% oldnames, col_mapping[.], .), .cols = everything())
   
@@ -57,7 +55,12 @@ for (lep_year in years) {
     rename_with(~ ifelse(. %in% oldnames, col_mapping[.], .), .cols = everything())
   
   # Export data
-  write_csv(pumas, here(paste0("pumasLEP_", lep_year, ".csv")))
-  write_csv(tracts, here(paste0("tractsLEP_", lep_year, ".csv")))
-  write_csv(pumas2, here(paste0("longGrainLEP_", lep_year, ".csv")))
+  write_csv(pumas, here(paste0("pumasLEP2_", lep_year, ".csv")))
+  write_csv(tracts, here(paste0("tractsLEP2_", lep_year, ".csv")))
+  write_csv(pumas2, here(paste0("longGrainLEP2_", lep_year, ".csv")))
+  
+  #st_write(pumas2, here(paste0("longGrainLEP_", lep_year, ".shp")))
+  st_write(pumas, here(paste0("pumasLEP2_", lep_year, ".shp")))
+  st_write(tracts, here(paste0("tracts2_", lep_year, ".shp")))
+  
 }
