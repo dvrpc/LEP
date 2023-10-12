@@ -1,10 +1,10 @@
-name: LEP Data Pipeline
+name: ci
 on:
   push:
     branches:
-      - master 
+      - master
       - main
-      - mk_docs
+      - doc-maintenance
 permissions:
   contents: write
 jobs:
