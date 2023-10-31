@@ -63,113 +63,103 @@ for (lep_year in years) {
   
   # Rename columns based on the mapping
   pumas <- pumas %>%
-    rename_with(~ ifelse(. %in% oldnames, col_mapping[.], .), .cols = everything())
+    rename_with( ~ ifelse(. %in% oldnames, col_mapping[.], .), .cols = everything())
   
   tracts <- tracts %>%
-    rename_with(~ ifelse(. %in% oldnames, col_mapping[.], .), .cols = everything())
+    rename_with( ~ ifelse(. %in% oldnames, col_mapping[.], .), .cols = everything())
   pumas <- pumas %>%
-    rename_with(~ ifelse(. %in% oldnames_long, col_mapping2[.], .), .cols = everything())
+    rename_with( ~ ifelse(. %in% oldnames_long, col_mapping2[.], .), .cols = everything())
   
   tracts <- tracts %>%
-    rename_with(~ ifelse(. %in% oldnames_long, col_mapping2[.], .), .cols = everything())
+    rename_with( ~ ifelse(. %in% oldnames_long, col_mapping2[.], .), .cols = everything())
   
   #add tag for languages that are lep
   tracts$five_p <- tracts$TT_POP_E * 0.05
   
-  tracts$change_tag <- case_when(
-    (tracts$Span_Lim_E > tracts$five_p) ~ "Spanish",
-    (tracts$FRE_Lim_E > tracts$five_p) ~ "French",
-    (tracts$GER_Lim_E > tracts$five_p) ~ "German",
-    (tracts$RUS_Lim_E > tracts$five_p) ~ "Russian",
-    (tracts$IND_Lim_E > tracts$five_p) ~ "Indo-European",
-    (tracts$KOR_Lim_E > tracts$five_p) ~ "Korean",
-    (tracts$CHI_Lim_E > tracts$five_p) ~ "Chinese",
-    (tracts$Viet_Lim_E > tracts$five_p) ~ "Vietnamese",
-    (tracts$TAG_Lim_E > tracts$five_p) ~ "Tagalog",
-    (tracts$PAC_Li_E > tracts$five_p) ~ "Asian and Pacific Island languages",
-    (tracts$ARB_Lim_E > tracts$five_p) ~ "Arabic",
-    (tracts$OTH_Lim_E > tracts$five_p) ~ "Other language",
-    TRUE ~ "no LEP"
-  )
-  
+  tracts$Span_Lim_E_5p <- tracts$five_p < tracts$Span_Lim_E
+  tracts$FRE_Lim_E_5p <- tracts$five_p < tracts$FRE_Lim_E
+  tracts$GER_Lim_E_5p <- tracts$five_p < tracts$GER_Lim_E
+  tracts$RUS_Lim_E_5p <- tracts$five_p < tracts$RUS_Lim_E
+  tracts$IND_Lim_E_5p <- tracts$five_p < tracts$IND_Lim_E
+  tracts$KOR_Lim_E_5p <- tracts$five_p < tracts$KOR_Lim_E
+  tracts$CHI_Lim_E_5p <- tracts$five_p < tracts$CHI_Lim_E
+  tracts$Viet_Lim__5p <- tracts$five_p < tracts$Viet_Lim_E
+  tracts$TAG_Lim_E_5p <- tracts$five_p < tracts$TAG_Lim_E
+  tracts$PAC_Li_E_5p <- tracts$five_p < tracts$PAC_Li_E
+  tracts$ARB_Lim_E_5p <- tracts$five_p < tracts$ARB_Lim_E
+  tracts$OTH_Lim_E_5p <- tracts$five_p < tracts$OTH_Lim_E
   
   pumas <- pumas %>%
-    rename_with(~ ifelse(. %in% oldnames_long, col_mapping2[.], .), .cols = everything())
+    rename_with( ~ ifelse(. %in% oldnames_long, col_mapping2[.], .), .cols = everything())
   pumas$five_p <- pumas$TT_POP_E * 0.05
   
-  pumas$change_tag <- case_when(
-    (pumas$Span_Lim_E > pumas$five_p) ~ "Spanish",
-    (pumas$FRE_Lim_E > pumas$five_p) ~ "French",
-    (pumas$GER_Lim_E > pumas$five_p) ~ "German",
-    (pumas$RUS_Lim_E > pumas$five_p) ~ "Russian",
-    (pumas$IND_Lim_E > pumas$five_p) ~ "Indo-European",
-    (pumas$KOR_Lim_E > pumas$five_p) ~ "Korean",
-    (pumas$CHI_Lim_E > pumas$five_p) ~ "Chinese",
-    (pumas$Viet_Lim_E > pumas$five_p) ~ "Vietnamese",
-    (pumas$TAG_Lim_E > pumas$five_p) ~ "Tagalog",
-    (pumas$PAC_Li_E > pumas$five_p) ~ "Asian and Pacific Island languages",
-    (pumas$ARB_Lim_E > pumas$five_p) ~ "Arabic",
-    (pumas$OTH_Lim_E > pumas$five_p) ~ "Other language",
-    TRUE ~ "no LEP"
-  )
-  
+  pumas$Span_Lim_E_5p <- pumas$five_p < pumas$Span_Lim_E
+  pumas$FRE_Lim_E_5p <- pumas$five_p < pumas$FRE_Lim_E
+  pumas$GER_Lim_E_5p <- pumas$five_p < pumas$GER_Lim_E
+  pumas$RUS_Lim_E_5p <- pumas$five_p < pumas$RUS_Lim_E
+  pumas$IND_Lim_E_5p <- pumas$five_p < pumas$IND_Lim_E
+  pumas$KOR_Lim_E_5p <- pumas$five_p < pumas$KOR_Lim_E
+  pumas$CHI_Lim_E_5p <- pumas$five_p < pumas$CHI_Lim_E
+  pumas$Viet_Lim__5p <- pumas$five_p < pumas$Viet_Lim_E
+  pumas$TAG_Lim_E_5p <- pumas$five_p < pumas$TAG_Lim_E
+  pumas$PAC_Li_E_5p <- pumas$five_p < pumas$PAC_Li_E
+  pumas$ARB_Lim_E_5p <- pumas$five_p < pumas$ARB_Lim_E
+  pumas$OTH_Lim_E_5p <- pumas$five_p < pumas$OTH_Lim_E
   
   pumas2 <- pumas2 %>%
-    rename_with(~ ifelse(. %in% oldnames_long, col_mapping2[.], .), .cols = everything())
+    rename_with( ~ ifelse(. %in% oldnames_long, col_mapping2[.], .), .cols = everything())
   pumas2$five_p <- pumas2$TT_POP_E * 0.05
   
-  pumas2$change_tag <- case_when(
-    (pumas2$Spa_Lim_E > pumas2$five_p) ~ "Spanish",
-    (pumas2$Fra_Lim_E > pumas2$five_p) ~ "French",
-    (pumas2$Hat_Lim_E > pumas2$five_p) ~ "Haitian",
-    (pumas2$Ita_Lim_E > pumas2$five_p) ~ "Italian",
-    (pumas2$Por_Lim_E > pumas2$five_p) ~ "Portuguese",
-    (pumas2$Ger_Lim_E > pumas2$five_p) ~ "German",
-    (pumas2$Germanic_Lim_E > pumas2$five_p) ~ "Other West Germanic",
-    (pumas2$Gre_Lim_E > pumas2$five_p) ~ "Greek",
-    (pumas2$Rus_Lim_E > pumas2$five_p) ~ "Russian",
-    (pumas2$Pol_Lim_E > pumas2$five_p) ~ "Polish",
-    (pumas2$Srp_hrv_Lim_E > pumas2$five_p) ~ "Serbo-Croatian",
-    (pumas2$Ukr_sla_Lim_E > pumas2$five_p) ~ "Ukrainian or Slavic",
-    (pumas2$Arm_Lim_E > pumas2$five_p) ~ "Armenian",
-    (pumas2$Per_Lim_E > pumas2$five_p) ~ "Persian",
-    (pumas2$Guj_Lim_E > pumas2$five_p) ~ "Gujarati",
-    (pumas2$Hin_Lim_E > pumas2$five_p) ~ "Hindi",
-    (pumas2$Urd_Lim_E > pumas2$five_p) ~ "Urdu",
-    (pumas2$Pan_Lim_E > pumas2$five_p) ~ "Punjabi",
-    (pumas2$Ben_Lim_E > pumas2$five_p) ~ "Bengali",
-    (pumas2$Inc_Lim_E > pumas2$five_p) ~ "Indic",
-    (pumas2$Ine_Lim_E > pumas2$five_p) ~ "Other Indo-European",
-    (pumas2$Tel_Lim_E > pumas2$five_p) ~ "Telugu",
-    (pumas2$Tam_Lim_E > pumas2$five_p) ~ "Tamil",
-    (pumas2$Dra_Lim_E > pumas2$five_p) ~ "Dravidian",
-    (pumas2$Chi_Lim_E > pumas2$five_p) ~ "Chinese",
-    (pumas2$Jpn_Lim_E > pumas2$five_p) ~ "Japanese",
-    (pumas2$Kor_Lim_E > pumas2$five_p) ~ "Korean",
-    (pumas2$Hmong_Lim_E > pumas2$five_p) ~ "Hmong",
-    (pumas2$Viet_Lim_E > pumas2$five_p) ~ "Vietnamese",
-    (pumas2$Khmer_Lim_E > pumas2$five_p) ~ "Khmer",
-    (pumas2$Hmn_Lim_E > pumas2$five_p) ~ "Hmong (Other)",
-    (pumas2$Tai_Lim_E > pumas2$five_p) ~ "Tai",
-    (pumas2$Oth_Asia_Lim_E > pumas2$five_p) ~ "Other Asian",
-    (pumas2$Tgl_Lim_E > pumas2$five_p) ~ "Tagalog",
-    (pumas2$Map_Lim_E > pumas2$five_p) ~ "Malayalam, Kannada, or Tamil",
-    (pumas2$Ara_Lim_E > pumas2$five_p) ~ "Arabic",
-    (pumas2$Heb_Lim_E > pumas2$five_p) ~ "Hebrew",
-    (pumas2$Amh_Lim_E > pumas2$five_p) ~ "Amharic",
-    (pumas2$Yor_twi_ibo_oth_Lim_E > pumas2$five_p) ~ "Yoruba, Twi, Igbo, or Other African",
-    (pumas2$Swa_oth_Lim_E > pumas2$five_p) ~ "Swahili or Other African",
-    (pumas2$Nav_Lim_E > pumas2$five_p) ~ "Navajo",
-    (pumas2$Oth_native_amer_Lim_E > pumas2$five_p) ~ "Other Native American",
-    TRUE ~ "no LEP"
-  )
+  pumas2$Spa_Lim_E_5p <- pumas2$five_p < pumas2$Spa_Lim_E
+  pumas2$Fra_Lim_E_5p <- pumas2$five_p < pumas2$Fra_Lim_E
+  pumas2$Hat_Lim_E_5p <- pumas2$five_p < pumas2$Hat_Lim_E
+  pumas2$Ita_Lim_E_5p <- pumas2$five_p < pumas2$Ita_Lim_E
+  pumas2$Por_Lim_E_5p <- pumas2$five_p < pumas2$Por_Lim_E
+  pumas2$Ger_Lim_E_5p <- pumas2$five_p < pumas2$Ger_Lim_E
+  pumas2$Germanic_Lim_E_5p <- pumas2$five_p < pumas2$Germanic_Lim_E
+  pumas2$Gre_Lim_E_5p <- pumas2$five_p < pumas2$Gre_Lim_E
+  pumas2$Rus_Lim_E_5p <- pumas2$five_p < pumas2$Rus_Lim_E
+  pumas2$Pol_Lim_E_5p <- pumas2$five_p < pumas2$Pol_Lim_E
+  pumas2$Srp_hrv_Lim_E_5p  <- pumas2$five_p < pumas2$Srp_hrv_Lim_E
+  pumas2$Ukr_sla_Lim_E_5p  <- pumas2$five_p < pumas2$Ukr_sla_Lim_E
+  pumas2$Arm_Lim_E_5p <- pumas2$five_p < pumas2$Arm_Lim_E
+  pumas2$Per_Lim_E_5p <- pumas2$five_p < pumas2$Per_Lim_E
+  pumas2$Guj_Lim_E_5p <- pumas2$five_p < pumas2$Guj_Lim_E
+  pumas2$Hin_Lim_E_5p <- pumas2$five_p < pumas2$Hin_Lim_E
+  pumas2$Urd_Lim_E_5p <- pumas2$five_p < pumas2$Urd_Lim_E
+  pumas2$Pan_Lim_E_5p <- pumas2$five_p < pumas2$Pan_Lim_E
+  pumas2$Ben_Lim_E_5p <- pumas2$five_p < pumas2$Ben_Lim_E
+  pumas2$Inc_Lim_E_5p <- pumas2$five_p < pumas2$Inc_Lim_E
+  pumas2$Ine_Lim_E_5p <- pumas2$five_p < pumas2$Ine_Lim_E
+  pumas2$Tel_Lim_E_5p <- pumas2$five_p < pumas2$Tel_Lim_E
+  pumas2$Tam_Lim_E_5p <- pumas2$five_p < pumas2$Tam_Lim_E
+  pumas2$Dra_Lim_E_5p <- pumas2$five_p < pumas2$Dra_Lim_E
+  pumas2$Chi_Lim_E_5p <- pumas2$five_p < pumas2$Chi_Lim_E
+  pumas2$Jpn_Lim_E_5p <- pumas2$five_p < pumas2$Jpn_Lim_E
+  pumas2$Kor_Lim_E_5p <- pumas2$five_p < pumas2$Kor_Lim_E
+  pumas2$Hmong_Lim_E_5p <- pumas2$five_p < pumas2$Hmong_Lim_E
+  pumas2$Viet_Lim_E_5p  <- pumas2$five_p < pumas2$Viet_Lim_E
+  pumas2$Khmer_Lim_E_5p <- pumas2$five_p < pumas2$Khmer_Lim_E
+  pumas2$Hmn_Lim_E_5p <- pumas2$five_p < pumas2$Hmn_Lim_E
+  pumas2$Tai_Lim_E_5p <- pumas2$five_p < pumas2$Tai_Lim_E
+  pumas2$Oth_Asia_Lim_E_5p <- pumas2$five_p < pumas2$Oth_Asia_Lim_E
+  pumas2$Tgl_Lim_E_5p <- pumas2$five_p < pumas2$Tgl_Lim_E
+  pumas2$Map_Lim_E_5p <- pumas2$five_p < pumas2$Map_Lim_E
+  pumas2$Ara_Lim_E_5p <- pumas2$five_p < pumas2$Ara_Lim_E
+  pumas2$Heb_Lim_E_5p <- pumas2$five_p < pumas2$Heb_Lim_E
+  pumas2$Amh_Lim_E_5p <- pumas2$five_p < pumas2$Amh_Lim_E
+  pumas2$Yor_twi_ibo_oth_Lim_E_5p <- pumas2$five_p < pumas2$Yor_twi_ibo_oth_Lim_E
+  pumas2$Swa_oth_Lim_E_5p <- pumas2$five_p < pumas2$Swa_oth_Lim_E
+  pumas2$Nav_Lim_E_5p <- pumas2$five_p < pumas2$Nav_Lim_E
+  pumas2$Oth_native_amer_Lim_E_5p <- pumas2$five_p < pumas2$Oth_native_amer_Lim_E
+  
   
   #eliminate unused variables
   pumas2 <- pumas2 %>%
     dplyr::select(-starts_with("C16001"))
   
-  #find most common LEP
   
+  #find most common LEP
   #create just the LEP columns
   pumas_lim <- pumas[c(
     "Span_Lim_E",
