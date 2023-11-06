@@ -6,7 +6,7 @@ setwd("C:\\Users\\jdobkin\\Documents\\outputs")
 
 #census keys
 Sys.getenv("CENSUS_API_KEY")
-census_api_key("219399afeaa3b3c28f7b5351b56bb92d7d0f576d", overwrite = TRUE)
+census_api_key("", overwrite = TRUE)
 
 
 # Loop through each year
