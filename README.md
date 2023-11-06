@@ -4,6 +4,8 @@
 This project automates parts of DVRPC's Limited english profenency (LEP) analysis, including data download, processing, and export. 
 The data is based on the American Community Survey 5 year Estimates for Tract and Public Use Microdata Area (PUMAs) geographies.
 
+Please note that this product makes use of both the the `B16001` and `C16001` language tables. The `C16001` offers more detailed language groups and should not be used in comparison with `B16001` observations of the same name.
+
 ## Getting the Code and Software
 
 1. Clone the repository. 
