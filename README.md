@@ -4,13 +4,20 @@
 This project automates parts of DVRPC's Limited english profenency (LEP) analysis, including data download, processing, and export. 
 The data is based on the American Community Survey 5 year Estimates for Tract and Public Use Microdata Area (PUMAs) geographies.
 
-Please note that this product makes use of both the the `B16001` and `C16001` language tables. The `C16001` offers more detailed language groups and should not be used in comparison with `B16001` observations of the same name.
+Please note that this product makes use of both the `B16001` and `C16001` language tables. The `C16001` offers more detailed language groups and should not be used in comparison with `B16001` observations of the same name.
 
 ## Getting the Code and Software
 
 1. Clone the repository. 
 2. Download and install R from https://www.r-project.org/
 3. Download and install R Studio from https://www.rstudio.com/products/rstudio/#Desktop
+4. Open the code files directly in R Studio. If needed, push commits through GitHub desktop.
+5. Create the .Renviron files 
+These files include screts, such as passwords and API keys in this format:
+`password1=password_without_quotation_marks
+password2=0000
+path1=C:/path/to/folder`
+The Files can be created in R studio through Files -> New Files -> Text File with type as R.environ when saving.
 
 ## Installing Package Dependencies 
 
