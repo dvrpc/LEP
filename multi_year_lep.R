@@ -2,11 +2,11 @@
 years <- 2021
 
 # Set your working directory
-setwd("C:\\Users\\jdobkin\\Documents\\outputs")
+setwd(here:here())
 
 #census keys
-Sys.getenv("CENSUS_API_KEY")
-census_api_key(key, overwrite = TRUE, install = TRUE)
+census_api_key(Sys.getenv("CENSUS_API_KEY"), overwrite = TRUE, install = FALSE)
+
 
 # Loop through each year
 
@@ -325,12 +325,11 @@ for (lep_year in years) {
   
   
   # Export data
-  #write_csv(pumas, here(paste0("pumasLEP_", lep_year, ".csv")))
-  #write_csv(tracts, here(paste0("tractsLEP_", lep_year, ".csv")))
-  #write_csv(pumas2, here(paste0("longGrainLEP_", lep_year, ".csv")))
+  write_csv(pumas, here(paste0("pumasLEP_", lep_year, ".csv")))
+  write_csv(tracts, here(paste0("tractsLEP_", lep_year, ".csv")))
+  write_csv(pumas2, here(paste0("longGrainLEP_", lep_year, ".csv")))
   
-  #st_write(pumas2, here(paste0("longGrainLEP_", lep_year, ".shp")))
-  #st_write(pumas, here(paste0("pumasLEP_", lep_year, ".shp")))
-  #st_write(tracts, here(paste0("tracts_", lep_year, ".shp")))
-  
+  st_write(pumas2, here(paste0("longGrainLEP_", lep_year, ".shp")), delete_layer = TRUE)
+  st_write(pumas, here(paste0("pumasLEP_", lep_year, ".shp")), delete_layer = TRUE)
+  st_write(tracts, here(paste0("tracts_", lep_year, ".shp")), delete_layer = TRUE)
 }
