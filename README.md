@@ -50,8 +50,9 @@ If you are running the code against a newly released 5-year ACS dataset, do the 
 5. Once the code is run it will place the outputs in your current working directory to change this reset your current working directory in your session settings.
 
 ## Outputs
-This code generates 6 output files for each survey. This include .csv and .shp versions of the same outputs.
+This code generates 6 output files for each survey. This includes .csv and .shp versions of the same outputs.
 The `tractsLEP` files contain the abbreviated language groups at the census tract level from the B16001 ACS 5 year table.
 The `pumasLEP` files contain the abbreviated language groups at the Public Use Microdata Areas level from the B16001 ACS 5 year table.
 The `longGrainLEP` files contain the unabbreviated language groups only available at the Public Use Microdata Areas level from the C16001 ACS 5 year table.
 Please note that the unabbreviated language groups have cannot be directly compared to the abbreviated language groups.
+A data dictionary of the outputs can be found in the dictionary.md file.
