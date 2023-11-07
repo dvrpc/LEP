@@ -55,4 +55,4 @@ The `tractsLEP` files contain the abbreviated language groups at the census trac
 The `pumasLEP` files contain the abbreviated language groups at the Public Use Microdata Areas level from the B16001 ACS 5 year table.
 The `longGrainLEP` files contain the unabbreviated language groups only available at the Public Use Microdata Areas level from the C16001 ACS 5 year table.
 Please note that the unabbreviated language groups have cannot be directly compared to the abbreviated language groups.
-A data dictionary of the outputs can be found in the dictionary.md file.
+A data dictionary of the outputs can be found in the dictionary.md file. The C16001 dictionary is for the unabbreviated language groups while the B16001 dictionary is for the abbreviated language groups at both the Tract and PUMA level.
